@@ -1,4 +1,7 @@
-const API_URL = 'http://localhost:5000/ask';
+// Use relative URL or environment-based URL for better portability
+const API_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:5000/ask'
+    : `http://${window.location.hostname}:5000/ask`;
 
 const chatMessages = document.getElementById('chat-messages');
 const questionInput = document.getElementById('question-input');

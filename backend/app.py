@@ -7,7 +7,14 @@ CORS(app)
 @app.route('/ask', methods=['POST'])
 def ask():
     data = request.get_json()
+    
+    if not data or 'question' not in data:
+        return jsonify({"error": "Invalid request. 'question' field is required."}), 400
+    
     question = data.get('question', '')
+    
+    if not question.strip():
+        return jsonify({"error": "Question cannot be empty."}), 400
     
     # Mock response
     response = {
